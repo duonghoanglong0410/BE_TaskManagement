@@ -54,8 +54,8 @@ public class GroupController {
     }
 
     @PutMapping("/{id}")
-    public GroupResponse updateGroup(@PathVariable Long id, @RequestBody GroupRequest request) {
-        return groupService.updateGroup(id, request);
+    public GroupResponse updateGroup(@PathVariable Long id, @RequestBody GroupRequest request, MultipartFile file) throws IOException {
+        return groupService.updateGroup(id, request, file);
     }
 
     @DeleteMapping("/{id}")

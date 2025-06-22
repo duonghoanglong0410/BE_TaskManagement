@@ -216,4 +216,5 @@ public class Group {
     public void setStatus(GroupStatus status) {
         this.status = status;
     }
+
 }
