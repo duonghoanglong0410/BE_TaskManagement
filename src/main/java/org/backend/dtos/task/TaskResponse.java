@@ -1,5 +1,7 @@
 package org.backend.dtos.task;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.backend.dtos.user.UserShortResponse;
 import org.backend.dtos.group.GroupShortResponse;
 import org.backend.enums.TaskPriority;
@@ -8,6 +10,8 @@ import org.backend.enums.TaskType;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@Setter
+@Getter
 public class TaskResponse {
     private Long id;
     private String title;

@@ -91,26 +91,29 @@ public class GroupServiceImpl implements GroupService {
                 .collect(Collectors.toList());
     }
 
-    public GroupResponse updateGroup(Long id, GroupRequest request) {
+
+    public GroupResponse updateGroup(Long id, GroupRequest request, MultipartFile file) {
         Group group = groupRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Group not found"));
+
         group.setName(request.getName());
         group.setDescription(request.getDescription());
-        group.setAvatarUrl(request.getAvatarUrl());
         group.setMaxMembers(request.getMaxMembers());
         group.setStatus(request.getStatus());
+
+        // Kiểm tra và cập nhật avatarUrl
+        if (request.getAvatarUrl() != null && !request.getAvatarUrl().isBlank()) {
+            group.setAvatarUrl(request.getAvatarUrl());
+        } else {
+            // Nếu không có avatarUrl mới, giữ nguyên avatar cũ
+            group.setAvatarUrl(group.getAvatarUrl());
+        }
+
         // Nếu muốn cho phép đổi password group (có trường password trong request)
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
             group.setPassword(passwordEncoder.encode(request.getPassword()));
         }
 
-        // Không update avatarUrl ở đây (đã có API upload avatar riêng)
-        // Nếu muốn update avatar bằng link:
-        // if (request.getAvatarUrl() != null && !request.getAvatarUrl().isBlank()) {
-        //     group.setAvatarUrl(request.getAvatarUrl());
-        // }
-
-        
         group = groupRepository.save(group);
         return groupMapper.toGroupResponse(group);
     }

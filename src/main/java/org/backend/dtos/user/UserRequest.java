@@ -1,7 +1,11 @@
 package org.backend.dtos.user;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.backend.enums.AuthProvider;
 
+@Getter
+@Setter
 public class UserRequest {
     private String email;
     private String password;

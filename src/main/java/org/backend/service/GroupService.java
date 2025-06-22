@@ -10,6 +10,6 @@ public interface GroupService {
     GroupResponse createGroup(GroupRequest request, MultipartFile file);
     GroupResponse getGroup(Long id);
     List<GroupResponse> getAllGroups();
-    GroupResponse updateGroup(Long id, GroupRequest request);
+    GroupResponse updateGroup(Long id, GroupRequest request, MultipartFile file);
     void deleteGroup(Long id);
 }

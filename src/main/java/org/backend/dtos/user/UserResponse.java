@@ -1,8 +1,12 @@
 package org.backend.dtos.user;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.backend.enums.AuthProvider;
 import java.time.LocalDateTime;
 
+@Setter
+@Getter
 public class UserResponse {
     private Long id;
     private String email;
